@@ -116,6 +116,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # Credenciales sensibles del proyecto
-*.properties.local
+config.properties
+src/config.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,netbeans,windows,macos,linux
