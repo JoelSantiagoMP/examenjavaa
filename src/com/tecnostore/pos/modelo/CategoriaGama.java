@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package com.tecnostore.pos.modelo;
 
 /**
- *
- * @author Jorge Gómez
+ * Representa la gama de un celular.
  */
 public enum CategoriaGama {
-    
+    /** Gama alta (High-end) */
+    ALTA,
+    /** Gama media (Mid-range) */
+    MEDIA,
+    /** Gama baja (Low-end) */
+    BAJA
 }

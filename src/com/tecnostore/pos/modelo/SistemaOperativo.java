@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package com.tecnostore.pos.modelo;
 
 /**
- *
- * @author Jorge Gómez
+ * Representa el sistema operativo de un celular.
  */
 public enum SistemaOperativo {
-    
+    /** Sistema operativo Android */
+    ANDROID,
+    /** Sistema operativo iOS */
+    IOS,
+    /** Otros sistemas operativos */
+    OTHER
 }
