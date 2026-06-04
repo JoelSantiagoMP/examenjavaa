@@ -90,6 +90,37 @@ public class CelularDAO {
                 lista.add(celular);
             }
             return lista;
+        } 
+    }
+    
+    public void actualizar(Celular celular) throws SQLException {
+        
+        String sql = "UPDATE celulares SET marca=?, modelo=?, sistema_operativo=?, gama=?, precio=?, stock=? "
+                + "WHERE id=?";
+        
+        try (Connection con = ConexionDB.getInstancia().obtenerConexion();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setString(1, celular.getMarca());
+            ps.setString(2, celular.getModelo());
+            ps.setString(3, celular.getSistemaOperativo().name());
+            ps.setString(4, celular.getCategoriaGama().name());
+            ps.setBigDecimal(5, celular.getPrecio());
+            ps.setInt(6, celular.getStock());
+            ps.setLong(7, celular.getId());
+            ps.executeUpdate();
+        }
+    }
+    
+    public void eliminar(Long id) throws SQLException {
+        
+        String sql = "DELETE FROM celulares WHERE id = ?";
+        
+        try (Connection con = ConexionDB.getInstancia().obtenerConexion();
+            PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setLong(1, id);
+            ps.executeUpdate();
         }
     }
 }
