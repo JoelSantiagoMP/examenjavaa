@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class VentaDAO {
 
     /**
-     * Registra una venta completa en la base de datos de manera transaccional.
+     * Registra un venta completa en la base de datos de manera transaccional.
      * Inserta la cabecera, los detalles y actualiza el stock de los celulares.
      * * @param venta Objeto Venta que contiene el cliente, fecha, total y lista de detalles.
      * @throws SQLException Si ocurre un error en la base de datos o si falla el stock (CHECK constraint).
@@ -59,7 +59,7 @@ public class VentaDAO {
                     // A. Insertar el registro en 'detalle_ventas'
                     psDetalle.setLong(1, venta.getId()); // ID recién generado
                     psDetalle.setLong(2, detalle.getCelular().getId());
-                    psDetalle.setInt(3, detalle.getCactidad()); // Atributo unificado en paso 0 (getCantidad)
+                    psDetalle.setInt(3, detalle.getCantidad()); // ✨ Corregido aquí: getCantidad()
                     psDetalle.setBigDecimal(4, detalle.getSubtotal());
                     psDetalle.executeUpdate();
 

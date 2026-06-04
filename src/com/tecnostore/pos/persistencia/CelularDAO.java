@@ -5,7 +5,6 @@
 package com.tecnostore.pos.persistencia;
 
 import com.tecnostore.pos.modelo.Celular;
-import com.tecnostore.pos.persistencia.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
