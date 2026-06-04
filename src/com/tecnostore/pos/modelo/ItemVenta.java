@@ -83,8 +83,8 @@ public class ItemVenta {
      * Calcula el subtotal multiplicando el precio del celular por la cantidad.
      */
     private void calculateSubtotal() {
-        if (this.celular != null && this.celular.getPrice() != null && this.quantity > 0) {
-            this.subtotal = this.celular.getPrice().multiply(BigDecimal.valueOf(this.quantity));
+        if (this.celular != null && this.celular.getPrecio() != null && this.quantity > 0) {
+            this.subtotal = this.celular.getPrecio().multiply(BigDecimal.valueOf(this.quantity));
         } else {
             this.subtotal = BigDecimal.ZERO;
         }
