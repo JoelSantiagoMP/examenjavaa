@@ -8,6 +8,6 @@ public enum SistemaOperativo {
     ANDROID,
     /** Sistema operativo iOS */
     IOS,
-    /** Otros sistemas operativos */
-    OTHER
+    /** Sistema operativo HarmonyOS (Huawei) */
+    HARMONYOS
 }
