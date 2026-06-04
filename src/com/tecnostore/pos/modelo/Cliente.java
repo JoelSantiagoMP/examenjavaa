@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
  */
 public class Cliente {
     private Long id;
-    private String name;
-    private String identification;
-    private String email;
-    private String phone;
+    private String nombre;
+    private String identificacion;
+    private String correo;
+    private String telefono;
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
         "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
@@ -25,17 +25,17 @@ public class Cliente {
      * Constructor con todos los atributos.
      *
      * @param id Identificador único del cliente
-     * @param name Nombre del cliente
-     * @param identification Identificación (DNI/Cédula)
-     * @param email Correo electrónico
-     * @param phone Número de teléfono
+     * @param nombre Nombre del cliente
+     * @param identificacion Identificación (DNI/Cédula)
+     * @param correo Correo electrónico
+     * @param telefono Número de teléfono
      */
-    public Cliente(Long id, String name, String identification, String email, String phone) {
+    public Cliente(Long id, String nombre, String identificacion, String correo, String telefono) {
         this.id = id;
-        setName(name);
-        setIdentification(identification);
-        setEmail(email);
-        setPhone(phone);
+        setNombre(nombre);
+        setIdentificacion(identificacion);
+        setCorreo(correo);
+        setTelefono(telefono);
     }
 
     public Long getId() {
@@ -46,53 +46,53 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
      * Establece el nombre del cliente. Valida que no sea nulo ni vacío.
      */
-    public final void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
+    public final void setNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío");
         }
-        this.name = name;
+        this.nombre = nombre;
     }
 
-    public String getIdentification() {
-        return identification;
+    public String getIdentificacion() {
+        return identificacion;
     }
 
     /**
      * Establece la identificación del cliente. Valida que no sea nula ni vacía.
      */
-    public final void setIdentification(String identification) {
-        if (identification == null || identification.trim().isEmpty()) {
+    public final void setIdentificacion(String identificacion) {
+        if (identificacion == null || identificacion.trim().isEmpty()) {
             throw new IllegalArgumentException("La identificación no puede estar vacía");
         }
-        this.identification = identification;
+        this.identificacion = identificacion;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
     /**
      * Establece el correo electrónico. Valida el formato usando una expresión regular.
      */
-    public final void setEmail(String email) {
-        if (email != null && !email.isEmpty() && !EMAIL_PATTERN.matcher(email).matches()) {
+    public final void setCorreo(String correo) {
+        if (correo != null && !correo.isEmpty() && !EMAIL_PATTERN.matcher(correo).matches()) {
             throw new IllegalArgumentException("El formato del correo electrónico es inválido");
         }
-        this.email = email;
+        this.correo = correo;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public final void setPhone(String phone) {
-        this.phone = phone;
+    public final void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

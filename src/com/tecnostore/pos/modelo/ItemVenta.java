@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class ItemVenta {
     private Long id;
     private Celular celular;
-    private int quantity;
+    private int cantidad;
     private BigDecimal subtotal;
 
     /**
@@ -21,12 +21,12 @@ public class ItemVenta {
      *
      * @param id Identificador único del ítem
      * @param celular Celular asociado al ítem
-     * @param quantity Cantidad de unidades
+     * @param cantidad Cantidad de unidades
      */
-    public ItemVenta(Long id, Celular celular, int quantity) {
+    public ItemVenta(Long id, Celular celular, int cantidad) {
         this.id = id;
         setCelular(celular);
-        setQuantity(quantity);
+        setCantidad(cantidad);
         calculateSubtotal();
     }
 
@@ -53,18 +53,18 @@ public class ItemVenta {
         calculateSubtotal();
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCantidad() {
+        return cantidad;
     }
 
     /**
      * Establece la cantidad. Valida que sea mayor a cero y recalcula el subtotal.
      */
-    public final void setQuantity(int quantity) {
-        if (quantity <= 0) {
+    public final void setCantidad(int cantidad) {
+        if (cantidad <= 0) {
             throw new IllegalArgumentException("La cantidad debe ser mayor a cero");
         }
-        this.quantity = quantity;
+        this.cantidad = cantidad;
         calculateSubtotal();
     }
 
@@ -83,8 +83,8 @@ public class ItemVenta {
      * Calcula el subtotal multiplicando el precio del celular por la cantidad.
      */
     private void calculateSubtotal() {
-        if (this.celular != null && this.celular.getPrecio() != null && this.quantity > 0) {
-            this.subtotal = this.celular.getPrecio().multiply(BigDecimal.valueOf(this.quantity));
+        if (this.celular != null && this.celular.getPrecio() != null && this.cantidad > 0) {
+            this.subtotal = this.celular.getPrecio().multiply(BigDecimal.valueOf(this.cantidad));
         } else {
             this.subtotal = BigDecimal.ZERO;
         }

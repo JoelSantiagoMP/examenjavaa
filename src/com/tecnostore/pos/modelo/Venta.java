@@ -11,18 +11,18 @@ import java.util.List;
 public class Venta {
     private Long id;
     private Cliente cliente;
-    private List<ItemVenta> items;
-    private LocalDateTime date;
-    private BigDecimal totalAmount;
+    private List<ItemVenta> detalles;
+    private LocalDateTime fecha;
+    private BigDecimal total;
 
     /**
      * Constructor por defecto.
-     * Inicializa la lista de ítems, la fecha actual y el monto total en cero.
+     * Inicializa la lista de detalles, la fecha actual y el monto total en cero.
      */
     public Venta() {
-        this.items = new ArrayList<>();
-        this.date = LocalDateTime.now();
-        this.totalAmount = BigDecimal.ZERO;
+        this.detalles = new ArrayList<>();
+        this.fecha = LocalDateTime.now();
+        this.total = BigDecimal.ZERO;
     }
 
     /**
@@ -30,14 +30,14 @@ public class Venta {
      *
      * @param id Identificador único de la venta
      * @param cliente Cliente asociado a la venta
-     * @param items Lista de ítems de la venta
-     * @param date Fecha y hora de la venta
+     * @param detalles Lista de ítems/detalles de la venta
+     * @param fecha Fecha y hora de la venta
      */
-    public Venta(Long id, Cliente cliente, List<ItemVenta> items, LocalDateTime date) {
+    public Venta(Long id, Cliente cliente, List<ItemVenta> detalles, LocalDateTime fecha) {
         this.id = id;
         this.cliente = cliente;
-        this.items = items != null ? new ArrayList<>(items) : new ArrayList<>();
-        this.date = date != null ? date : LocalDateTime.now();
+        this.detalles = detalles != null ? new ArrayList<>(detalles) : new ArrayList<>();
+        this.fecha = fecha != null ? fecha : LocalDateTime.now();
         calculateTotalAmount();
     }
 
@@ -64,74 +64,74 @@ public class Venta {
     }
 
     /**
-     * Obtiene una copia defensiva de los ítems de venta.
+     * Obtiene una copia defensiva de los detalles de venta.
      */
-    public List<ItemVenta> getItems() {
-        return new ArrayList<>(items);
+    public List<ItemVenta> getDetalles() {
+        return new ArrayList<>(detalles);
     }
 
     /**
-     * Establece los ítems de venta y recalcula el monto total.
+     * Establece los detalles de venta y recalcula el monto total.
      */
-    public void setItems(List<ItemVenta> items) {
-        if (items == null) {
-            throw new IllegalArgumentException("La lista de ítems no puede ser nula");
+    public void setDetalles(List<ItemVenta> detalles) {
+        if (detalles == null) {
+            throw new IllegalArgumentException("La lista de detalles no puede ser nula");
         }
-        this.items = new ArrayList<>(items);
+        this.detalles = new ArrayList<>(detalles);
         calculateTotalAmount();
     }
 
     /**
-     * Añade un ítem a la venta y recalcula el monto total.
+     * Añade un detalle a la venta y recalcula el monto total.
      */
-    public void addItem(ItemVenta item) {
-        if (item == null) {
-            throw new IllegalArgumentException("El ítem no puede ser nulo");
+    public void addDetalle(ItemVenta detalle) {
+        if (detalle == null) {
+            throw new IllegalArgumentException("El detalle no puede ser nulo");
         }
-        this.items.add(item);
+        this.detalles.add(detalle);
         calculateTotalAmount();
     }
 
     /**
-     * Elimina un ítem de la venta y recalcula el monto total.
+     * Elimina un detalle de la venta y recalcula el monto total.
      */
-    public void removeItem(ItemVenta item) {
-        if (item != null) {
-            this.items.remove(item);
+    public void removeDetalle(ItemVenta detalle) {
+        if (detalle != null) {
+            this.detalles.remove(detalle);
             calculateTotalAmount();
         }
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getFecha() {
+        return fecha;
     }
 
     /**
      * Establece la fecha de la venta. Valida que no sea nula.
      */
-    public void setDate(LocalDateTime date) {
-        if (date == null) {
+    public void setFecha(LocalDateTime fecha) {
+        if (fecha == null) {
             throw new IllegalArgumentException("La fecha no puede ser nula");
         }
-        this.date = date;
+        this.fecha = fecha;
     }
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
+    public BigDecimal getTotal() {
+        return total;
     }
     
     /**
      * Permite establecer manualmente el monto total.
      */
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     /**
-     * Calcula el monto total sumando los subtotales de los ítems de la venta.
+     * Calcula el monto total sumando los subtotales de los detalles de la venta.
      */
     private void calculateTotalAmount() {
-        this.totalAmount = this.items.stream()
+        this.total = this.detalles.stream()
             .map(ItemVenta::getSubtotal)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
