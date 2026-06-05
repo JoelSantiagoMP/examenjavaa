@@ -6,6 +6,7 @@ package com.tecnostore.pos.servicio;
 
 import com.tecnostore.pos.modelo.Celular;
 import com.tecnostore.pos.modelo.Cliente;
+import com.tecnostore.pos.modelo.ItemVenta;
 import com.tecnostore.pos.persistencia.CelularDAO;
 import com.tecnostore.pos.persistencia.ClienteDAO;
 import com.tecnostore.pos.persistencia.VentaDAO;
@@ -29,7 +30,14 @@ public class GestorVentas {
     }
     
     public void registrarVenta(Venta venta) throws SQLException {
-        
+        if (venta.getDetalles().isEmpty()) {
+            throw new IllegalArgumentException("La venta debe tener al menos un ítem.");
+        }
+        verificarCliente(venta.getCliente().getId());
+        for (ItemVenta item : venta.getDetalles()) {
+            verificarStock(item.getCelular().getId(), item.getCantidad());
+        }
+        ventaDAO.registrarVenta(venta);
     }
     
     private void verificarCliente(Long idCliente) throws SQLException {
