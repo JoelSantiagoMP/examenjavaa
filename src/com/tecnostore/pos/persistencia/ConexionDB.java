@@ -8,18 +8,15 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Gestor de conexión a la base de datos TecnoStore.
- * Implementa el patrón de diseño Singleton: existe una única instancia
- * de esta clase en toda la aplicación.
- *
+ * Gestor de conexión a la base de datos TecnoStore
  * @author Jorge Gómez
  */
 public class ConexionDB {
 
-    // ---- Patrón Singleton ----
+    // Patrón Singleton
     private static volatile ConexionDB instancia;
 
-    // ---- Configuración de conexión (cargada desde config.properties) ----
+    // Configuración de conexión (cargada desde config.properties)
     private static final Properties props = new Properties();
 
     static {
@@ -35,18 +32,8 @@ public class ConexionDB {
         }
     }
 
-    /**
-     * Constructor PRIVADO: impide que otras clases hagan 'new ConexionDB()'.
-     * Es el corazón del patrón Singleton.
-     */
     private ConexionDB() {}
 
-    /**
-     * Devuelve la única instancia de ConexionDB (patrón Singleton).
-     * Usa Double-Checked Locking para ser seguro en entornos multihilo.
-     *
-     * @return instancia única de ConexionDB
-     */
     public static ConexionDB getInstancia() {
         if (instancia == null) {
             synchronized (ConexionDB.class) {
@@ -58,14 +45,6 @@ public class ConexionDB {
         return instancia;
     }
 
-    /**
-     * Abre y devuelve una conexión NUEVA a la base de datos,
-     * leyendo los datos desde config.properties.
-     * Quien la use debe cerrarla (con try-with-resources).
-     *
-     * @return conexión activa a la base de datos
-     * @throws SQLException si no se puede establecer la conexión
-     */
     public Connection obtenerConexion() throws SQLException {
         return DriverManager.getConnection(
             props.getProperty("db.url"),

@@ -10,16 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase de Persistencia (DAO) para la gestión de la entidad Cliente en MySQL.
- * Sigue las pautas de control de recursos automáticos exigidas en el proyecto.
  * * @author Jorge Gómez
  */
 public class ClienteDAO {
 
     /**
-     * Registra un nuevo cliente y recupera el ID autogenerado por la base de datos.
-     * * @param cliente Objeto con los datos del cliente a insertar.
-     * @throws SQLException Si ocurre un error de inserción o violación de restricciones UNIQUE.
+     * Registra un nuevo cliente y recupera el ID autogenerado por la base de datos
      */
     public void insertar(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO clientes (nombre, identificacion, correo, telefono) VALUES (?, ?, ?, ?)";
@@ -34,7 +30,7 @@ public class ClienteDAO {
             
             ps.executeUpdate();
             
-            // Recuperamos la llave primaria generada automáticamente por MySQL
+            // Recuperamos la llave primaria generada por MySQL
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     cliente.setId(rs.getLong(1));
@@ -44,9 +40,7 @@ public class ClienteDAO {
     }
 
     /**
-     * Actualiza la información de un cliente existente en base a su ID.
-     * * @param cliente Objeto con los datos actualizados.
-     * @throws SQLException Si ocurre un error en la base de datos.
+     * Actualiza la información de un cliente existente en base a su ID
      */
     public void actualizar(Cliente cliente) throws SQLException {
         String sql = "UPDATE clientes SET nombre = ?, identificacion = ?, correo = ?, telefono = ? WHERE id = ?";
@@ -65,9 +59,7 @@ public class ClienteDAO {
     }
 
     /**
-     * Elimina un cliente del sistema usando su identificador único numérico.
-     * * @param id Identificador del cliente a eliminar.
-     * @throws SQLException Si ocurre un error en la base de datos.
+     * Elimina un cliente del sistema usando su identificador único numérico
      */
     public void eliminar(Long id) throws SQLException {
         String sql = "DELETE FROM clientes WHERE id = ?";
@@ -81,10 +73,7 @@ public class ClienteDAO {
     }
 
     /**
-     * Busca un cliente en la base de datos mediante su ID interno.
-     * * @param id ID del cliente.
-     * @return El objeto Cliente mapeado, o null si no se encuentra.
-     * @throws SQLException Si ocurre un error en la consulta.
+     * Busca un cliente en la base de datos mediante su ID interno
      */
     public Cliente buscarPorId(Long id) throws SQLException {
         String sql = "SELECT id, nombre, identificacion, correo, telefono FROM clientes WHERE id = ?";
@@ -104,11 +93,7 @@ public class ClienteDAO {
     }
 
     /**
-     * Busca un cliente por su número de documento de identificación (Cédula/DNI).
-     * Requerimiento clave para validar unicidad en la capa de servicios.
-     * * @param identificacion Cadena de texto con el documento.
-     * @return El objeto Cliente correspondiente, o null si está disponible.
-     * @throws SQLException Si ocurre un error en la consulta.
+     * Busca un cliente por su número de documento de identificación
      */
     public Cliente buscarPorIdentificacion(String identificacion) throws SQLException {
         String sql = "SELECT id, nombre, identificacion, correo, telefono FROM clientes WHERE identificacion = ?";
@@ -128,9 +113,7 @@ public class ClienteDAO {
     }
 
     /**
-     * Obtiene la lista completa de clientes registrados en TecnoStore.
-     * * @return Lista de clientes.
-     * @throws SQLException Si ocurre un error en la consulta.
+     * Obtiene la lista completa de clientes registrados en TecnoStore
      */
     public List<Cliente> listarTodos() throws SQLException {
         List<Cliente> lista = new ArrayList<>();
@@ -147,10 +130,6 @@ public class ClienteDAO {
         return lista;
     }
 
-    /**
-     * Método helper privado para evitar duplicidad de código al extraer 
-     * información de los ResultSets de las consultas SQL.
-     */
     private Cliente mapearCliente(ResultSet rs) throws SQLException {
         Cliente cliente = new Cliente();
         cliente.setId(rs.getLong("id"));
