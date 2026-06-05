@@ -3,30 +3,17 @@ package com.tecnostore.pos.modelo;
 import java.math.BigDecimal;
 
 /**
- * Representa un teléfono celular disponible para la venta.
- * Extiende {@link Producto} añadiendo sistema operativo y categoría de gama.
+ * Representa un teléfono celular disponible para la venta
  */
 public class Celular extends Producto {
 
     private SistemaOperativo sistemaOperativo;
     private CategoriaGama categoriaGama;
 
-    /** Constructor por defecto. */
     public Celular() {
         super();
     }
 
-    /**
-     * Constructor con todos los atributos.
-     *
-     * @param id               Identificador único
-     * @param marca            Marca del celular
-     * @param modelo           Modelo del celular
-     * @param precio           Precio de venta
-     * @param stock            Unidades en inventario
-     * @param sistemaOperativo Sistema operativo del celular
-     * @param categoriaGama    Categoría de gama del celular
-     */
     public Celular(Long id, String marca, String modelo, BigDecimal precio,
                    int stock, SistemaOperativo sistemaOperativo,
                    CategoriaGama categoriaGama) {

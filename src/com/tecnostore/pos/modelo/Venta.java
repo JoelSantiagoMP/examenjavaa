@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representa una venta realizada en la tienda.
+ * Representa una venta realizada en la tienda
  */
 public class Venta {
     private Long id;
@@ -15,24 +15,12 @@ public class Venta {
     private LocalDateTime fecha;
     private BigDecimal total;
 
-    /**
-     * Constructor por defecto.
-     * Inicializa la lista de detalles, la fecha actual y el monto total en cero.
-     */
     public Venta() {
         this.detalles = new ArrayList<>();
         this.fecha = LocalDateTime.now();
         this.total = BigDecimal.ZERO;
     }
 
-    /**
-     * Constructor con atributos. Calcula el monto total automáticamente.
-     *
-     * @param id Identificador único de la venta
-     * @param cliente Cliente asociado a la venta
-     * @param detalles Lista de ítems/detalles de la venta
-     * @param fecha Fecha y hora de la venta
-     */
     public Venta(Long id, Cliente cliente, List<ItemVenta> detalles, LocalDateTime fecha) {
         this.id = id;
         this.cliente = cliente;
@@ -54,7 +42,7 @@ public class Venta {
     }
 
     /**
-     * Establece el cliente. Valida que no sea nulo.
+     * Establece el cliente y valida que no sea nulo
      */
     public void setCliente(Cliente cliente) {
         if (cliente == null) {
@@ -64,14 +52,14 @@ public class Venta {
     }
 
     /**
-     * Obtiene una copia defensiva de los detalles de venta.
+     * Obtiene una copia de los detalles de venta
      */
     public List<ItemVenta> getDetalles() {
         return new ArrayList<>(detalles);
     }
 
     /**
-     * Establece los detalles de venta y recalcula el monto total.
+     * Establece los detalles de venta y recalcula el monto total
      */
     public void setDetalles(List<ItemVenta> detalles) {
         if (detalles == null) {
@@ -82,7 +70,7 @@ public class Venta {
     }
 
     /**
-     * Añade un detalle a la venta y recalcula el monto total.
+     * Añade un detalle a la venta y recalcula el monto total
      */
     public void addDetalle(ItemVenta detalle) {
         if (detalle == null) {
@@ -93,7 +81,7 @@ public class Venta {
     }
 
     /**
-     * Elimina un detalle de la venta y recalcula el monto total.
+     * Elimina un detalle de la venta y recalcula el monto total
      */
     public void removeDetalle(ItemVenta detalle) {
         if (detalle != null) {
@@ -107,7 +95,7 @@ public class Venta {
     }
 
     /**
-     * Establece la fecha de la venta. Valida que no sea nula.
+     * Establece la fecha de la venta y valida que no sea nula
      */
     public void setFecha(LocalDateTime fecha) {
         if (fecha == null) {
@@ -121,14 +109,14 @@ public class Venta {
     }
     
     /**
-     * Permite establecer manualmente el monto total.
+     * Permite establecer manualmente el monto total
      */
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
     /**
-     * Calcula el monto total sumando los subtotales de los detalles de la venta.
+     * Calcula el monto total sumando los subtotales de los detalles de la venta
      */
     private void calculateTotalAmount() {
         this.total = this.detalles.stream()

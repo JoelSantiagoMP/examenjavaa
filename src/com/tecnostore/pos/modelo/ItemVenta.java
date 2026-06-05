@@ -3,7 +3,7 @@ package com.tecnostore.pos.modelo;
 import java.math.BigDecimal;
 
 /**
- * Representa un ítem dentro de una venta.
+ * Representa un ítem dentro de una venta
  */
 public class ItemVenta {
     private Long id;
@@ -11,18 +11,8 @@ public class ItemVenta {
     private int cantidad;
     private BigDecimal subtotal;
 
-    /**
-     * Constructor por defecto.
-     */
     public ItemVenta() {}
 
-    /**
-     * Constructor con todos los atributos requeridos. Calcula el subtotal automáticamente.
-     *
-     * @param id Identificador único del ítem
-     * @param celular Celular asociado al ítem
-     * @param cantidad Cantidad de unidades
-     */
     public ItemVenta(Long id, Celular celular, int cantidad) {
         this.id = id;
         setCelular(celular);
@@ -43,7 +33,7 @@ public class ItemVenta {
     }
 
     /**
-     * Establece el celular. Valida que no sea nulo y recalcula el subtotal.
+     * Establece el celular, valida que no sea nulo y recalcula el subtotal
      */
     public final void setCelular(Celular celular) {
         if (celular == null) {
@@ -58,7 +48,7 @@ public class ItemVenta {
     }
 
     /**
-     * Establece la cantidad. Valida que sea mayor a cero y recalcula el subtotal.
+     * Establece la cantidad, valida que sea mayor a cero y recalcula el subtotal
      */
     public final void setCantidad(int cantidad) {
         if (cantidad <= 0) {
@@ -73,14 +63,14 @@ public class ItemVenta {
     }
     
     /**
-     * Permite establecer manualmente el subtotal, aunque generalmente se calcula.
+     * Permite establecer manualmente el subtotal, aunque generalmente se calcula
      */
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
 
     /**
-     * Calcula el subtotal multiplicando el precio del celular por la cantidad.
+     * Calcula el subtotal multiplicando el precio del celular por la cantidad
      */
     private void calculateSubtotal() {
         if (this.celular != null && this.celular.getPrecio() != null && this.cantidad > 0) {

@@ -6,10 +6,7 @@ package com.tecnostore.pos.modelo;
 
 import java.math.BigDecimal;
 
-/**
- *
- * @author camper
- */
+
 public abstract class Producto {
     private Long id;
     private String marca;
@@ -17,18 +14,8 @@ public abstract class Producto {
     private BigDecimal precio;
     private int stock;
 
-    /** Constructor por defecto. */
     protected Producto() {}
 
-    /**
-     * Constructor con atributos base del producto.
-     *
-     * @param id     Identificador único
-     * @param marca  Marca del producto
-     * @param modelo Modelo del producto
-     * @param precio Precio de venta
-     * @param stock  Unidades en inventario
-     */
     protected Producto(Long id, String marca, String modelo,
                        BigDecimal precio, int stock) {
         this.id = id;
@@ -38,7 +25,7 @@ public abstract class Producto {
         setStock(stock);
     }
 
-    // ---- Getters y setters con validación ----
+    // Getters y setters con validación
 
     public Long getId() { return id; }
 
@@ -81,8 +68,7 @@ public abstract class Producto {
     }
 
     /**
-     * Representación textual del producto.
-     * Las subclases deben implementar este método con sus atributos propios.
+     * Representación textual del producto
      */
     @Override
     public abstract String toString();
