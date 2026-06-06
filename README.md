@@ -99,3 +99,8 @@ db.password=CONTRASENA
 - JDBC — MySQL Connector/J 9.7.0
 - Apache NetBeans 18
 - Git / GitHub
+
+## Autor(es)
+
+- Jorge Gomez
+- Joel Martinez
