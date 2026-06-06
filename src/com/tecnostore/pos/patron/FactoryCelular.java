@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tecnostore.pos.patron;
 
-/**
- *
- * @author Jorge Gómez
- */
 import com.tecnostore.pos.modelo.CategoriaGama;
 import com.tecnostore.pos.modelo.Celular;
 import com.tecnostore.pos.modelo.SistemaOperativo;
@@ -15,28 +7,18 @@ import java.math.BigDecimal;
 
 public class FactoryCelular {
 
+    private static final BigDecimal PRECIO_GAMA_ALTA = new BigDecimal("3000001");
+    private static final BigDecimal PRECIO_GAMA_MEDIA = new BigDecimal("1000001");
+
     public static Celular crear(String marca, String modelo, BigDecimal precio,
-                                int stock, SistemaOperativo so, CategoriaGama gama) {
-        switch (gama) {
-            case ALTA:
-                if (precio.compareTo(new BigDecimal("2000000")) < 0) {
-                    throw new IllegalArgumentException(
-                        "Un celular de gama alta debe tener precio mayor a $2.000.000");
-                }
-                break;
-            case MEDIA:
-                if (precio.compareTo(new BigDecimal("800000")) < 0 ||
-                    precio.compareTo(new BigDecimal("2000000")) >= 0) {
-                    throw new IllegalArgumentException(
-                        "Un celular de gama media debe tener precio entre $800.000 y $2.000.000");
-                }
-                break;
-            case BAJA:
-                if (precio.compareTo(new BigDecimal("800000")) >= 0) {
-                    throw new IllegalArgumentException(
-                        "Un celular de gama baja debe tener precio menor a $800.000");
-                }
-                break;
+                                int stock, SistemaOperativo so) {
+        CategoriaGama gama;
+        if (precio.compareTo(PRECIO_GAMA_ALTA) >= 0) {
+            gama = CategoriaGama.ALTA;
+        } else if (precio.compareTo(PRECIO_GAMA_MEDIA) >= 0) {
+            gama = CategoriaGama.MEDIA;
+        } else {
+            gama = CategoriaGama.BAJA;
         }
         return new Celular(null, marca, modelo, precio, stock, so, gama);
     }

@@ -100,8 +100,8 @@ public class CelularDAO implements ICelularDAO {
         celular.setId(rs.getLong("id"));
         celular.setMarca(rs.getString("marca"));
         celular.setModelo(rs.getString("modelo"));
-        celular.setSistemaOperativo(SistemaOperativo.valueOf(rs.getString("sistema_operativo")));
-        celular.setCategoriaGama(CategoriaGama.valueOf(rs.getString("gama")));
+        celular.setSistemaOperativo(SistemaOperativo.valueOf(rs.getString("sistema_operativo").toUpperCase()));
+        celular.setCategoriaGama(CategoriaGama.valueOf(rs.getString("gama").toUpperCase()));
         celular.setPrecio(rs.getBigDecimal("precio"));
         celular.setStock(rs.getInt("stock"));
         return celular;

@@ -35,15 +35,27 @@ public class Celular extends Producto {
 
     public final void setCategoriaGama(CategoriaGama categoriaGama) {
         if (categoriaGama == null) {
-            throw new IllegalArgumentException("La categoría de gama no puede ser nula");
+            throw new IllegalArgumentException("La categoria de gama no puede ser nula");
         }
         this.categoriaGama = categoriaGama;
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Celular)) return false;
+        Celular celular = (Celular) o;
+        return getId() != null && getId().equals(celular.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
+    }
+
+    @Override
     public String toString() {
-        return String.format("Celular{id=%d, marca='%s', modelo='%s', " +
-                "precio=%s, stock=%d, so=%s, gama=%s}",
+        return String.format("ID: %d | %s %s | Precio: $%s | Stock: %d | SO: %s | Gama: %s",
                 getId(), getMarca(), getModelo(),
                 getPrecio(), getStock(),
                 sistemaOperativo, categoriaGama);
