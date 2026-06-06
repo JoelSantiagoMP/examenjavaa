@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
  * @author Jorge Gómez
  */
 public class ReporteUtils {
- 
+
     public static List<Celular> celularesConStockBajo(List<Celular> celulares) {
         return celulares.stream()
-                .filter(c -> c.getStock() > 5)
+                .filter(c -> c.getStock() < 5)
                 .collect(Collectors.toList());
     }
-    
+
     public static List<Celular> top3MasVendidos(List<Venta> ventas) {
         return ventas.stream()
                 .flatMap(v -> v.getDetalles().stream())
@@ -37,13 +37,12 @@ public class ReporteUtils {
                 .limit(3)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-                
     }
-    
+
     public static Map<String, BigDecimal> ventasTotalesPorMes(List<Venta> ventas) {
         return ventas.stream()
                 .collect(Collectors.groupingBy(
-                        v -> v.getFecha().getYear() + "-" + 
+                        v -> v.getFecha().getYear() + "-" +
                              String.format("%02d", v.getFecha().getMonthValue()),
                         Collectors.reducing(
                                 BigDecimal.ZERO,
@@ -52,5 +51,4 @@ public class ReporteUtils {
                         )
                 ));
     }
-    
 }

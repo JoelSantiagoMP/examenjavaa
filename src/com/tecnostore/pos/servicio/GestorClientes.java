@@ -6,6 +6,7 @@ package com.tecnostore.pos.servicio;
 
 import com.tecnostore.pos.modelo.Cliente;
 import com.tecnostore.pos.persistencia.ClienteDAO;
+import com.tecnostore.pos.persistencia.IClienteDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
  * @author Jorge Gómez
  */
 public class GestorClientes {
-    private ClienteDAO clienteDAO;
+
+    private IClienteDAO clienteDAO;
 
     public GestorClientes() {
         this.clienteDAO = new ClienteDAO();

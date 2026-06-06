@@ -10,15 +10,18 @@ import com.tecnostore.pos.modelo.ItemVenta;
 import com.tecnostore.pos.modelo.Venta;
 import com.tecnostore.pos.persistencia.CelularDAO;
 import com.tecnostore.pos.persistencia.ClienteDAO;
+import com.tecnostore.pos.persistencia.ICelularDAO;
+import com.tecnostore.pos.persistencia.IClienteDAO;
+import com.tecnostore.pos.persistencia.IVentaDAO;
 import com.tecnostore.pos.persistencia.VentaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
 public class GestorVentas {
 
-    private ClienteDAO clienteDAO;
-    private CelularDAO celularDAO;
-    private VentaDAO ventaDAO;
+    private IClienteDAO clienteDAO;
+    private ICelularDAO celularDAO;
+    private IVentaDAO ventaDAO;
 
     public GestorVentas() {
         this.clienteDAO = new ClienteDAO();

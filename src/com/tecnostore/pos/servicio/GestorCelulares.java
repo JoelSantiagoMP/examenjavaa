@@ -6,6 +6,7 @@ package com.tecnostore.pos.servicio;
 
 import com.tecnostore.pos.modelo.Celular;
 import com.tecnostore.pos.persistencia.CelularDAO;
+import com.tecnostore.pos.persistencia.ICelularDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
  * @author Jorge Gómez
  */
 public class GestorCelulares {
-    private CelularDAO celularDAO;
+
+    private ICelularDAO celularDAO;
 
     public GestorCelulares() {
         this.celularDAO = new CelularDAO();
