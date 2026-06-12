@@ -1,3 +1,6 @@
+# Link del prompt de IA
+https://claude.ai/share/e61ecc07-6977-4bdc-9c85-08cf812937bf
+
 # TecnoStore POS
 
 Sistema de consola en Java para la gestión de ventas, inventario, clientes y créditos de una tienda de celulares.
