@@ -9,6 +9,7 @@ import com.tecnostore.pos.patron.StrategyDescuento;
 import com.tecnostore.pos.servicio.GestorCelulares;
 import com.tecnostore.pos.servicio.GestorClientes;
 import com.tecnostore.pos.servicio.GestorVentas;
+import com.tecnostore.pos.servicio.ReporteService;
 import com.tecnostore.pos.util.ArchivoUtils;
 import com.tecnostore.pos.util.ReporteUtils;
 import java.math.BigDecimal;
@@ -228,6 +229,20 @@ public class Main {
 
         gestorVentas.registrarVenta(venta);
         System.out.println("Venta registrada. Total: $" + venta.getTotal());
+
+        // Procesar pago
+        System.out.print("Monto pagado por el cliente: $");
+        BigDecimal montoPagado = new BigDecimal(scanner.nextLine().trim());
+        ReporteService.getInstancia().procesarPago(venta, montoPagado);
+
+        BigDecimal diferencia = venta.getTotal().subtract(montoPagado);
+        if (diferencia.compareTo(BigDecimal.ZERO) > 0) {
+            System.out.println("Queda pendiente: $" + diferencia);
+        } else if (diferencia.compareTo(BigDecimal.ZERO) < 0) {
+            System.out.println("Credito a favor: $" + diferencia.abs());
+        } else {
+            System.out.println("Pago exacto. Sin saldo pendiente.");
+        }
     }
 
     // REPORTES
@@ -238,6 +253,7 @@ public class Main {
         System.out.println("2. Top 3 mas vendidos");
         System.out.println("3. Ventas totales por mes");
         System.out.println("4. Generar reporte_ventas.txt");
+        System.out.println("5. Generar reporte_global.txt");
         System.out.print("Seleccione una opcion: ");
         int op = Integer.parseInt(scanner.nextLine().trim());
 
@@ -279,6 +295,9 @@ public class Main {
             case 4:
                 ArchivoUtils.generarReporte(ventas);
                 System.out.println("Archivo reporte_ventas.txt generado.");
+                break;
+            case 5:
+                ReporteService.getInstancia().generarReporteGlobal();
                 break;
             default:
                 System.out.println("Opcion no valida.");
